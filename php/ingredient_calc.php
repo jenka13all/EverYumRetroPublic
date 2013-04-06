@@ -16,41 +16,22 @@
 date_default_timezone_set('UTC');
 
 include_once("../libs/ingredient_calc_functions.php");
-include_once("getNoteFromEvernote.php");
+
 
 $loader = require '../vendor/autoload.php';
 
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
-/*
-$ingredients = array(
-    'pepper',
-    'salt',
-    'zucchini',
-    'mango',
-    'garlic',
-    'chocolate',
-    'marmelade',
-    'asparagus'
-);
-*/
-
-echo "count ingredients = " . count($ingredients) . "<br>";
-for($i=0; $i<count($ingredients); $i++)
-{
-	echo "$i = " . $ingredients[$i] . "<br>";
-}
+//$ingredients set here
+include_once("getNoteFromEvernote.php");
 
 $course = array('course^course-Main Dishes');
-
 $diet = array('386^Vegan');
 
 //replace with EverNote results
-//$fridge_list = "corn, peas, carrots, tomato, lentils, tomato paste, tofu, lemon, capers";
-$grocery_list = "soy milk, onion, garlic, bannana, lime, cashew, tahini";
+$grocery_list = "soy milk";
 $fridge_list = implode(",", $ingredients);
-//echo "fridge_list = $fridge_list <br>";
 
 $arr_my_items = return_have_items_array($fridge_list, $grocery_list);
 $my_items_count = count($arr_my_items);
