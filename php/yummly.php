@@ -7,7 +7,7 @@ $loader = require '../vendor/autoload.php';
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
-$ingredients = [
+$ingredients = array(
     'pepper',
     'salt',
     'zucchini',
@@ -16,13 +16,13 @@ $ingredients = [
     'chocolate',
     'marmelade',
     'asparagus',
-];
-$course = [
+);
+$course = array(
     'course^course-Main Dishes'
-];
-$diet = [
+);
+$diet = array(
     '386^Vegan',
-];
+);
 
 $recipes = $app->service['yummly']->getRecipesByIngredients($ingredients, $course, $diet);
 
