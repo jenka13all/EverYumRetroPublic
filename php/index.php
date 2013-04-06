@@ -9,24 +9,16 @@ error_reporting(E_ALL);
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>EverYum...Retro!</title>
-  
-
-
-<link type="text/css" rel="stylesheet" href="css/openshift.css" />
-
-<script src="js/callYumly.js" language="javascript" type="application/javascript"></script>
-
-	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>EverYum...Retro!</title>
+    <link type="text/css" rel="stylesheet" href="css/styles_v1.css" />
 </head>
 <body>
-	
-<div class="content">
-EverNote / Yumly: Vegan recipes on my old-school phone... powered by Deutsche Telekomm Tropo API	
-</div>
 
+<div class="content">
+    EverNote / Yumly: Vegan recipes on my old-school phone... powered by Deutsche Telekomm Tropo API	
+</div>
 
 </body>
 </html>
