@@ -57,7 +57,7 @@ class Yummly extends Service {
      * @param array $parameters (default: [])
      * @return void
      */
-    public function yummlyRequest($url, array $parameters=[]) {
+    public function yummlyRequest($url, array $parameters=array()) {
 
         // Build query string
         $query = http_build_query($parameters);
@@ -67,11 +67,11 @@ class Yummly extends Service {
         $query = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $query);
 
         // the actual request is done via our Service class
-        $response = $this->request('GET', $url . (($query) ? '?' . $query : ''), '', [
+        $response = $this->request('GET', $url . (($query) ? '?' . $query : ''), '', array(
             'Accept' => 'application/json',
             'X-Yummly-App-ID' => $this->applicationId,
             'X-Yummly-App-Key' => $this->applicationKey,
-        ]);
+        ));
 
         // decode the result
         $result = json_decode($response['body']);
@@ -95,19 +95,19 @@ class Yummly extends Service {
      * @param array $course (default: ['course^course-Main Dishes'])
      * @return array $recipes|void
      */
-    public function getRecipesByIngredients(array $ingredients, array $cuisine=[], array $diet=['386^Vegan'], array $course=['course^course-Main Dishes']) {
+    public function getRecipesByIngredients(array $ingredients, array $cuisine=array(), array $diet=array('386^Vegan'), array $course=array('course^course-Main Dishes')) {
 
         $url = 'recipes';
 
         // first, request recipes which feature EVERYTHING we have in our fridge
-        $parameters = [
+        $parameters = array(
             'start' => 0,
             'maxResult' => $this->maxResult,
             'allowedIngredient' => $ingredients,
             'allowedCuisine' => $cuisine,
             'allowedCourse' => $course,
             'allowedDiet' => $diet,
-        ];
+        );
 
         $recipes = $this->yummlyRequest($url, $parameters);
 
