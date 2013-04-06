@@ -5,15 +5,16 @@ return [
     // Turning debug on will cause detailed exceptions to be emitted.
     'debug'       => true,
     // If you want to use a proxy (e.g. 'localhost:8888')
-    'proxy'       => 'localhost:8888',
+    'proxy'       => false, #'localhost:8888',
 
     // Evernote
     'evernote.key'         => 'arminhackmann',
     'evernote.secret'      => 'cd7851d0e94ef764',
     'evernote.application' => 'everyum',
 
-    // DT Tropo
-
+    // DT Tropo, placeholders for now ;)
+    'tropo.username'    => '',
+    'tropp.password'    => '',
 
     // Yummly
     'yummly.endpoint'   => 'http://api.yummly.com/v1/api/',
