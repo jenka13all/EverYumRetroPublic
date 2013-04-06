@@ -16,7 +16,7 @@
 date_default_timezone_set('UTC');
 
 include_once("../libs/ingredient_calc_functions.php");
-//require_once '../vendor/autoload.php';
+include_once("getNoteFromEvernote.php");
 
 $loader = require '../vendor/autoload.php';
 
