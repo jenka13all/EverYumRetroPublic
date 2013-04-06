@@ -23,7 +23,7 @@ $loader = require '../vendor/autoload.php';
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
-$ingredients = [
+$ingredients = array(
     'pepper',
     'salt',
     'zucchini',
@@ -31,14 +31,12 @@ $ingredients = [
     'garlic',
     'chocolate',
     'marmelade',
-    'asparagus',
-];
-$course = [
-    'course^course-Main Dishes'
-];
-$diet = [
-    '386^Vegan',
-];
+    'asparagus'
+);
+
+$course = array('course^course-Main Dishes');
+
+$diet = array('386^Vegan');
 
 //replace with EverNote results
 //$fridge_list = "corn, peas, carrots, tomato, lentils, tomato paste, tofu, lemon, capers";
