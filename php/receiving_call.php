@@ -2,21 +2,26 @@
 
 require '../libs/tropo.class.php';
 require '../libs/limonade-master/lib/limonade.php';
+dispatch('/', 'hello');
+function hello()
+{
+    return 'Hello world!';
+}
 dispatch_post('/start', 'app_start');
 function app_start() {
-$tropo = new Tropo();
-$options = array("choices" => "Chinese, Mexican, Indian, Colombian, German, Italian, French", "name" => "foodstyle", "timeout" => 15);
-$tropo->ask("Hi! Welcome to Ever yum! What kind of dish do you want to eat tonight?", $options);
-$tropo->on(array("event" => "continue", "next" => "http://www.google.de?uri=continue"));
-$tropo->RenderJson();
+    $tropo = new Tropo();
+    $options = array("choices" => "Chinese, Mexican, Indian, Colombian, German, Italian, French", "name" => "foodstyle", "timeout" => 15);
+    $tropo->ask("Hi! Welcome to Ever yum! What kind of dish do you want to eat tonight?", $options);
+    $tropo->on(array("event" => "continue", "next" => "http://www.google.de?uri=continue"));
+    $tropo->RenderJson();
 }
 dispatch_post('/continue', 'app_continue');
 function app_continue() {
-$tropo = new Tropo();
-@$result = new Result();
-$answer = $result->getValue();
-$tropo->say("You said " . $answer);
-$tropo->RenderJson();
+    $tropo = new Tropo();
+    @$result = new Result();
+    $answer = $result->getValue();
+    $tropo->say("You said " . $answer);
+    $tropo->RenderJson();
 }
 run();
 
