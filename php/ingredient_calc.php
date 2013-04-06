@@ -23,6 +23,7 @@ $loader = require '../vendor/autoload.php';
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
+/*
 $ingredients = array(
     'pepper',
     'salt',
@@ -33,6 +34,13 @@ $ingredients = array(
     'marmelade',
     'asparagus'
 );
+*/
+
+echo "count ingredients = " . count($ingredients) . "<br>";
+for($i=0; $i<count($ingredients); $i++)
+{
+	echo "$i = " . $ingredients[$i] . "<br>";
+}
 
 $course = array('course^course-Main Dishes');
 
