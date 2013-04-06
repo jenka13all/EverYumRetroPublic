@@ -125,7 +125,7 @@ abstract class Service {
         // Splitting headers
         $headerBlob = explode("\r\n", $headerBlob);
 
-        $headers = [];
+        $headers = array;
         foreach($headerBlob as $header) {
             $parts = explode(':', $header, 2);
             if (count($parts)==2) {
