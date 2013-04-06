@@ -7,7 +7,7 @@
 	
 	<title>EverYumRetro DEV - Ingredient Calculation</title>
 	
-    <link type="text/css" rel="stylesheet" href="libs/css/styles_v1.css" />
+    <link type="text/css" rel="stylesheet" href="css/styles_v1.css" />
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" language="javascript" type="application/javascript"></script>
 </head>
@@ -62,7 +62,7 @@ https://api.yummly.com/v1/api/recipes?_app_id=<?php echo $APP_ID ?>&_app_key=<?p
 //decode our json into assoc. array
 //json_decode only works with utf-8 encoded data
 
-$json = utf8_encode (file_get_contents("libs/yumly_jsonp.json"));
+$json = utf8_encode (file_get_contents("../libs/yumly_jsonp.json"));
 $json_arr = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 
 $arr_recipes = $json_arr["matches"];
