@@ -39,12 +39,12 @@ abstract class Service {
             throw new \InvalidArgumentException('A baseUri must be provided');
         }
 
-        $validSettings = [
+        $validSettings = array(
             'baseUri',
             'userName',
             'password',
             'proxy',
-        ];
+        );
 
         foreach($validSettings as $validSetting) {
             if (isset($settings[$validSetting])) {
@@ -72,11 +72,11 @@ abstract class Service {
      * @param array $headers
      * @return array
      */
-    public function request($method, $url='', $body=null, array $headers=[]) {
+    public function request($method, $url='', $body=null, array $headers=array()) {
 
         $url = $this->baseUri . $url;
 
-        $curlSettings = [
+        $curlSettings = array(
             CURLOPT_RETURNTRANSFER => true,
             // Return headers as part of the response
             CURLOPT_HEADER => true,
@@ -84,12 +84,12 @@ abstract class Service {
             // Automatically follow redirects
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 5,
-        ];
+        );
 
         $curlSettings[CURLOPT_CUSTOMREQUEST] = $method;
 
         // Adding HTTP headers
-        $nHeaders = [];
+        $nHeaders = array();
         foreach($headers as $key=>$value) {
 
             $nHeaders[] = $key . ': ' . $value;
@@ -133,11 +133,11 @@ abstract class Service {
             }
         }
 
-        $response = [
+        $response = array(
             'body' => $response,
             'statusCode' => $curlInfo['http_code'],
             'headers' => $headers
-        ];
+        );
 
         if ($curlErrNo) {
             throw new \Exception('[CURL] Error while making request: ' . $curlError . ' (error code: ' . $curlErrNo . ')');

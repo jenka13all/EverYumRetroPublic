@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
 
     // Turning debug on will cause detailed exceptions to be emitted.
     'debug'       => true,
@@ -22,4 +22,4 @@ return [
     'yummly.key'        => '16661ed17dcef5c4392f7aa2e5318725',
     'yummly.maxResult'  => 5,
 
-];
+);
