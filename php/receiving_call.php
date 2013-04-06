@@ -2,11 +2,7 @@
 
 require '../libs/tropo.class.php';
 require '../libs/limonade-master/lib/limonade.php';
-dispatch('/', 'hello');
-function hello()
-{
-    return 'Hello world!';
-}
+dispatch('/', 'app_start');
 dispatch_post('/start', 'app_start');
 function app_start() {
     $tropo = new Tropo();
