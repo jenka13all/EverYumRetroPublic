@@ -12,7 +12,7 @@ use EDAM\Types\Data, EDAM\Types\Note, EDAM\Types\Resource, EDAM\Types\ResourceAt
 use EDAM\Error\EDAMUserException, EDAM\Error\EDAMErrorCode;
 use Evernote\Client;
 
-ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . "../libs/evernote/lib" . PATH_SEPARATOR);
+ini_set("include_path", __DIR__ . "/../libs/evernote-sdk-php-master/lib" . PATH_SEPARATOR);
 
 require_once 'autoload.php';
 
