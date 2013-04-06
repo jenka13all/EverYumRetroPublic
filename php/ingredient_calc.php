@@ -7,7 +7,7 @@
 	
 	<title>EverYumRetro DEV - Ingredient Calculation</title>
 	
-    <link type="text/css" rel="stylesheet" href="libs/css/styles_v1.css" />
+    <link type="text/css" rel="stylesheet" href="css/styles_v1.css" />
  </head>
 
 <body>
