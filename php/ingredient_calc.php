@@ -13,7 +13,7 @@
 <body>
 	
 <?php
-include_once("libs/ingredient_calc_functions.php");
+include_once("../libs/ingredient_calc_functions.php");
 
 //replace with EverNote results
 $fridge_list = "corn, peas, carrots, tomato, lentils, tomato paste, tofu, lemon, capers";
@@ -43,7 +43,7 @@ What to buy in order to make...
 
 <?php
 //replace filename with json data variable
-$arr_recipes = return_recipe_array("libs/yumly_jsonp.json");
+$arr_recipes = return_recipe_array("../libs/yumly_jsonp.json");
 
 ?>
 
