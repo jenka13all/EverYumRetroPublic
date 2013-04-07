@@ -1,6 +1,5 @@
 <?php
-
-require 'libs/tropo.class.php';
+require '../libs/tropo.class.php';
 $session = new Session();
 $to = "+".$session->getParameters("numbertodial");
 $msg = $session->getParameters("msg");

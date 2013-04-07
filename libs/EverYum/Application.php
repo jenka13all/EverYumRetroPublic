@@ -35,10 +35,13 @@ class Application {
      *
      * @return void
      */
-    public function initServices() {
+    protected function initServices() {
 
         $this->service['yummly'] = new \EverYum\Service\Yummly($this->config);
         $this->service['evernote'] = new \EverYum\Service\Evernote($this->config);
+        $this->service['tropo'] = new \EverYum\Service\Tropo($this->config);
+
+    }
 
     }
 
