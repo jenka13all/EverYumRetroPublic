@@ -54,6 +54,5 @@ foreach($bestMatches as $recipe) {
     echo $message.'<br /><br />';
     $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
 
-    break;
     $i++;
 }
