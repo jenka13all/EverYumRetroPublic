@@ -56,6 +56,6 @@ foreach($bestMatches as $recipe) {
 
     // Tropo limits us to 1 text message per second!
     sleep(2);
-
+echo date('H:i:s');
     $i++;
 }
