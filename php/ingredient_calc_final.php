@@ -49,13 +49,12 @@ foreach($bestMatches as $recipe) {
     $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $detail);
 
     // send text message
-    $message = 'Our ' . $rank . ' suggestion is ' . $recipe['name'] . '. All that you still need to cook this recipe is: ' . $recipe['toBuy'] . '. Please let us know how you liked the recipe in our facebook group :-)';
-
-    echo $message.'<br /><br />';
+    $message = 'Our ' . $rank . ' suggestion is ' . $recipe['name'] . '. You would need: ' . $recipe['toBuy'] . '.';
     $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
 
     // Tropo limits us to 1 text message per second!
     sleep(5);
-    echo date('H:i:s')."<br />";
     $i++;
 }
+
+echo count($bestMatches) . ' suggestions sent';
