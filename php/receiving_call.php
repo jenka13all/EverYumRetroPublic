@@ -19,7 +19,7 @@ function app_continue() {
     $answer = $result->getValue();
     $tropo->say("You said " . $answer . ". You will receive a text message with three cooking suggestions based on the content of your fridge in the next 2 minutes.");
 #    $tropo->hangup();
-#    $tropo->on(array("event" => "continue", "next" => "receiving_call.php?uri=continue"));
+    $tropo->on(array("event" => "continue", "next" => "ingredient_calc_final.php"));
     $tropo->RenderJson();
 }
 
