@@ -16,10 +16,12 @@ function app_continue() {
     $tropo = new Tropo();
     @$result = new Result();
     $answer = $result->getValue();
-    $tropo->say("You said " . $answer . ". You will receive a text message with three cooking suggestions based on the content of your fridge in the next 2 minutes.");
-#    $tropo->on(array("event" => "continue", "next" => "ingredient_calc_cinal.php?uri=continue"));
+    $tropo->say("You said " . $answer);
+    $tropo->hangup();
+#    $tropo->on(array("event" => "continue", "next" => "receiving_call.php?uri=continue"));
     $tropo->RenderJson();
 }
+
 run();
 
 /*
