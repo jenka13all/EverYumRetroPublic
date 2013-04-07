@@ -37,10 +37,8 @@ class Application {
      */
     public function initServices() {
 
-        $this->service['yummly'] = new \EverYum\Service\Yummly($this, array(
-            'baseUri' => $this->config['yummly.endpoint'],
-            'proxy'   => isset($this->config['proxy'])?$this->config['proxy']:null,
-        ));
+        $this->service['yummly'] = new \EverYum\Service\Yummly($this->config);
+        $this->service['evernote'] = new \EverYum\Service\Evernote($this->config);
 
     }
 

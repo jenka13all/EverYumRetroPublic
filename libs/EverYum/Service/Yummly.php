@@ -35,17 +35,19 @@ class Yummly extends Service {
      * configuration
      *
      * @access public
-     * @param \EverYum\Application $app
-     * @param array $settings
+     * @param array $config
      * @return void
      */
-    public function __construct(\EverYum\Application $app, array $settings) {
+    public function __construct(array $config) {
 
-        parent::__construct($app, $settings);
+        parent::__construct(array(
+            'baseUri' => $config['yummly.endpoint'],
+            'proxy'   => isset($config['proxy'])?$config['proxy']:null,
+        ));
 
-        $this->applicationId = $app->config['yummly.id'];
-        $this->applicationKey = $app->config['yummly.key'];
-        $this->maxResult = $app->config['yummly.maxResult'];
+        $this->applicationId  = $config['yummly.id'];
+        $this->applicationKey = $config['yummly.key'];
+        $this->maxResult      = $config['yummly.maxResult'];
 
     }
 

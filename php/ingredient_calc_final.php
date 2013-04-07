@@ -3,7 +3,7 @@ date_default_timezone_set('UTC');
 
 include_once("../libs/ingredient_calc_functions.php");
 
-$loader = require '../vendor/autoload.php';
+$loader = require '../libs/autoload.php';
 
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);

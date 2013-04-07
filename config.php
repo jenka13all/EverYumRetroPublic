@@ -8,11 +8,11 @@ return array(
     'proxy'       => false, #'localhost:8888',
 
     // Evernote
-    'evernote.key'         => 'arminhackmann',
-    'evernote.secret'      => 'cd7851d0e94ef764',
-    'evernote.application' => 'everyum',
+    'evernote.token'    => 'S=s1:U=64a04:E=14536500036:C=13dde9ed438:P=1cd:A=en-devtoken:V=2:H=c46e44e1d1ba3853b2f2a4ac1bbc0c2b',
+    'evernote.sandbox'  => true,
 
     // DT Tropo, placeholders for now ;)
+    'tropo.endpoint'    => 'https://api.tropo.com/1.0/',
     'tropo.username'    => '',
     'tropp.password'    => '',
 

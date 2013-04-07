@@ -1,8 +1,5 @@
 <?php
-
-date_default_timezone_set('UTC');
-
-$loader = require '../vendor/autoload.php';
+$loader = require '../libs/autoload.php';
 
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);

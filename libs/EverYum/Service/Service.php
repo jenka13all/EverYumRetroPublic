@@ -11,10 +11,7 @@ namespace EverYum\Service;
  */
 abstract class Service {
 
-    protected $app;
     protected $baseUri;
-    protected $userName;
-    protected $password;
     protected $proxy;
 
     /**
@@ -24,31 +21,24 @@ abstract class Service {
      * settings are supported:
      *
      *   * baseUri
-     *   * userName (optional)
-     *   * password (optional)
      *   * proxy (optional)
      *
-     * @param \EverYum\Application $app
      * @param array $settings
      */
-    public function __construct(\EverYum\Application $app, array $settings) {
+    public function __construct(array $config) {
 
-        $this->app = $app;
-
-        if (!isset($settings['baseUri'])) {
+        if (!isset($config['baseUri'])) {
             throw new \InvalidArgumentException('A baseUri must be provided');
         }
 
         $validSettings = array(
             'baseUri',
-            'userName',
-            'password',
             'proxy',
         );
 
         foreach($validSettings as $validSetting) {
-            if (isset($settings[$validSetting])) {
-                $this->$validSetting = $settings[$validSetting];
+            if (isset($config[$validSetting])) {
+                $this->$validSetting = $config[$validSetting];
             }
         }
 
