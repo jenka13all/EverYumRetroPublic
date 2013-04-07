@@ -18,6 +18,7 @@ echo '<hr />';
 $recipe = $app->service['yummly']->getRecipe('White-whole-wheat-pizza-dough-308605');
 
 echo '<b>Save a recipe to default recipe Notebook:</b>';
-$createdNote = $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $recipe);
+#$createdNote = $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $recipe);
+#echo $createdNote->title;
 
-echo $createdNote->title;
+echo 'We don\'t want to spam Daans Recipe Notebook, so I\'m disabling this...';
