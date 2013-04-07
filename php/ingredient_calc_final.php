@@ -1,6 +1,4 @@
 <?php
-date_default_timezone_set('UTC');
-
 include_once("../libs/ingredient_calc_functions.php");
 
 $loader = require '../libs/autoload.php';
@@ -11,23 +9,51 @@ $app = new \EverYum\Application($config);
 // fetching user data (theoritcally by caller id)
 $user = include __DIR__ . '/../user.php';
 
-// fetch fridge contents from Evernote
-$app->service['evernote']->getFridgeContents($user['evernote.token'], $user['evernote.fridgeNoteGuid']);
-
-//replace with Tropo values
+// TO-DO: replace with Tropo values
 $course = array('course^course-Main Dishes');
 $diet = array('386^Vegan');
 
-//replace with EverNote results
-$grocery_list = "soy milk";
-$fridge_list = implode(",", $ingredients);
+// fetch fridge contents from Evernote
+$fridge_list = $app->service['evernote']->getFridgeContents($user['evernote.token'], $user['evernote.fridgeNoteGuid']);
+$grocery_list = array("soy milk");
+$arr_my_items = array_merge($grocery_list, $fridge_list);
 
-$arr_my_items = return_have_items_array($fridge_list, $grocery_list);
-$my_items_count = count($arr_my_items);
+// fetch possible recipes from Yummly
+$arr_recipes = $app->service['yummly']->getRecipesByIngredients($arr_my_items, $course, $diet);
 
-$arr_recipes = $app->service['yummly']->getRecipesByIngredients($ingredients, $course, $diet);
-
+// calculate best matches
 $arr_tobuy = return_shopping_list_obj($arr_my_items, $arr_recipes);
 
-//foreach ($arr_tobuy as $recipe => $shopping_list)
-?>
+echo '<pre>' . print_r($arr_tobuy, true) . '</pre>';
+/*
+// iterate over the best matches and
+$i=0;
+foreach($recipes as $recipe) {
+    switch($i){
+        case 0:
+            $rank = 'first';
+            break;
+        case 1:
+            $rank = 'second';
+            break;
+        case 2:
+            $rank = 'third';
+            break;
+        default:
+            $rank = ($i+1) . 'th';
+            break;
+    }
+
+    // get recipe
+    $detail = $app->service['yummly']->getRecipe($recipe->id);
+
+    // save to Evernote
+    $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $detail);
+
+    // send text message
+    $message = "Our $rank suggestion is $recipe->name. All that you still need to cook this recipe is $recipe->missing_elements. Please let us know how you liked the recipe in our facebook group :-)";
+    $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
+
+    $i++;
+}
+*/
