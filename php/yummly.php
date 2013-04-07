@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * This script is 'just' proof of concept, that our service to fetch
+ * data from yummly works. Well done ;)
+ */
+
 $loader = require '../libs/autoload.php';
 
 $config = include __DIR__ . '/../config.php';
@@ -28,12 +34,8 @@ echo 'we found ' . $recipes->totalMatchCount. ' matches (first ' . count($recipe
 echo '<ul>';
 
 foreach($recipes->matches as $recipe) {
-
     // get the actual recipe
     $rrecipe = $app->service['yummly']->getRecipe($recipe->id);
-
-#echo '<pre>' . print_r($rrecipe, true) . '</pre>';exit;
-
     echo '<li>' .
             '<b>' . $recipe->recipeName . '</b><br />' .
             'Score: <b>' . $recipe->rating . '</b><br />' .
