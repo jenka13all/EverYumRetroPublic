@@ -85,12 +85,12 @@ class Evernote extends Service {
 
         // TO-DO: Add remote image to Note
         $hashImg = '';
-        if (false && $recipe['images']['hostedLargeUrl']) {
+        if (false && $recipe->images[0]->hostedLargeUrl) {
             // To include an attachment such as an image in a note, first create a Resource
             // for the attachment. At a minimum, the Resource contains the binary attachment
             // data, an MD5 hash of the binary data, and the attachment MIME type. It can also
             // include attributes such as filename and location.
-            $filename = $recipe['images']['hostedLargeUrl'];
+            $filename = $recipe->images[0]->hostedLargeUrl;
             $image = fread(fopen($filename, "rb"), filesize($filename));
             $hash = md5($image, 1);
 
@@ -117,14 +117,14 @@ class Evernote extends Service {
 
         $note = new Note();
         $note->notebookGuid = $notebookGuid;
-        $note->title = $recipe['name'];
+        $note->title = $recipe->name;
         $note->content =
             '<?xml version="1.0" encoding="UTF-8"?>' .
             '<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">' .
-            '<en-note>Ingredients<br/>' .
-            implode('<br />', $recipe['ingredients']) .
+            '<en-note><b>Ingredients</b><br/> - ' .
+            implode('<br /> - ', $recipe->ingredientLines) .
             '<br/><br/>' .
-            $recipe['url'] .
+            $recipe->attribution->url .
             (($hashImg)?'<en-media type="image/png" hash="' . $hashImg . '"/>':'') .
             '</en-note>';
 
