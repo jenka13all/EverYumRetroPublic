@@ -38,16 +38,24 @@ class Evernote extends Service {
 
     }
 
-    public function getFridgeContents($id) {
+    public function getClient() {
 
         $client = new Client(array(
             'sandbox' => $this->sandbox,
             'token'   => $this->token,
         ));
 
+        return $client;
+
+    }
+
+    public function getFridgeContents($guid) {
+
+        $client = $this->getClient();
+
         // get the note Store 
         $noteStore = $client->getNoteStore();
-        $noteContent = $noteStore->getNoteContent($this->token, $id);
+        $noteContent = $noteStore->getNoteContent($this->token, $guid);
 
         //converting format to string
         $noteContentString = (string) $noteContent;
@@ -64,7 +72,67 @@ class Evernote extends Service {
         //ingredients are delivered as an array
         $ingredients = explode ('<br clear="none"/>',$noteContentString);
 
+        // List all of the notebooks in the user's account
+#        $notebooks = $noteStore->listNotebooks();
+#        echo '<pre>'.print_r( $notebooks, true ).'</pre>';exit;
+
         return $ingredients;
+
+    }
+
+    public function createRecipeNote($notebookGuid, $recipe) {
+
+        $client = $this->getClient();
+        $noteStore = $client->getNoteStore();
+
+        // TO-DO: Add remote image to Note
+        $hashImg = '';
+        if (false && $recipe['images']['hostedLargeUrl']) {
+            // To include an attachment such as an image in a note, first create a Resource
+            // for the attachment. At a minimum, the Resource contains the binary attachment
+            // data, an MD5 hash of the binary data, and the attachment MIME type. It can also
+            // include attributes such as filename and location.
+            $filename = $recipe['images']['hostedLargeUrl'];
+            $image = fread(fopen($filename, "rb"), filesize($filename));
+            $hash = md5($image, 1);
+
+            $data = new Data();
+            $data->size = strlen($image);
+            $data->bodyHash = $hash;
+            $data->body = $image;
+
+            $resource = new Resource();
+            $resource->mime = "image/png";
+            $resource->data = $data;
+            $resource->attributes = new ResourceAttributes();
+            $resource->attributes->fileName = $filename;
+
+            // Now, add the new Resource to the note's list of resources
+            $note->resources = array( $resource );
+
+            // To display the Resource as part of the note's content, include an <en-media>
+            // tag in the note's ENML content. The en-media tag identifies the corresponding
+            // Resource using the MD5 hash.
+            $hashImg = md5($image, 0);
+        }
+
+
+        $note = new Note();
+        $note->notebookGuid = $notebookGuid;
+        $note->title = $recipe['name'];
+        $note->content =
+            '<?xml version="1.0" encoding="UTF-8"?>' .
+            '<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">' .
+            '<en-note>Ingredients<br/>' .
+            implode('<br />', $recipe['ingredients']) .
+            '<br/><br/>' .
+            $recipe['url'] .
+            (($hashImg)?'<en-media type="image/png" hash="' . $hashImg . '"/>':'') .
+            '</en-note>';
+
+        $createdNote = $noteStore->createNote($this->token, $note);
+
+        return $createdNote;
 
     }
 

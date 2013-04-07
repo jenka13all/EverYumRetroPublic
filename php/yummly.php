@@ -30,12 +30,14 @@ echo '<ul>';
 foreach($recipes->matches as $recipe) {
 
     // get the actual recipe
-#    $rrecipe = $app['service.yummly']->getRecipe($recipe->id);
+    $rrecipe = $app->service['yummly']->getRecipe($recipe->id);
+
+#echo '<pre>' . print_r($rrecipe, true) . '</pre>';exit;
 
     echo '<li>' .
             '<b>' . $recipe->recipeName . '</b><br />' .
             'Score: <b>' . $recipe->rating . '</b><br />' .
-#            '(<a href="' . $rrecipe->attribution->url . '" target="_blank">' . $rrecipe->attribution->url . '</a>)<br />' .
+            '(<a href="' . $rrecipe->attribution->url . '" target="_blank">' . $rrecipe->attribution->url . '</a>)<br />' .
             '<ul><li>' . implode('</li><li>', $recipe->ingredients) . '</li></ul>' .
          '</li>';
 }
