@@ -8,6 +8,7 @@ $app = new \EverYum\Application($config);
 $user = include __DIR__ . '/../user.php';
 
 // TO-DO: replace with Tropo values
+$cuisine = array('cuisine^cuisine-mexican');
 $course = array('course^course-Main Dishes');
 $diet = array('386^Vegan');
 
@@ -17,7 +18,7 @@ $grocery_list = array("soy milk");
 $arr_my_items = array_merge($grocery_list, $fridge_list);
 
 // fetch possible recipes from Yummly
-$arr_recipes = $app->service['yummly']->getRecipesByIngredients($arr_my_items, $course, $diet);
+$arr_recipes = $app->service['yummly']->getRecipesByIngredients($arr_my_items, $cuisine, $diet, $course);
 
 // calculate best matches
 $bestMatches = $app->getBestMatches($arr_my_items, $arr_recipes);
