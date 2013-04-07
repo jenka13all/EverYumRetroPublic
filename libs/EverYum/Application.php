@@ -43,6 +43,10 @@ class Application {
 
     }
 
+    public function getBestMatches(array $recipes, array $ingredients) {
+
+        
+
     }
 
 }
