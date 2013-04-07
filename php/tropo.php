@@ -14,6 +14,6 @@ $app = new \EverYum\Application($config);
 $user = include __DIR__ . '/../user.php';
 
 $msg = 'Muh';
-echo $app->service['tropo']->sendTextMessage($user['cellphone'], $msg);
+#echo $app->service['tropo']->sendTextMessage($user['cellphone'], $msg);
 
 echo 'As we don\'t know how may text messages can be sent in the sandbox account, I\'m disabling the proof-of-concept for now :)';

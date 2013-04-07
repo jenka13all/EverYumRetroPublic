@@ -49,9 +49,8 @@ foreach($bestMatches as $recipe) {
     $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $detail);
 
     // send text message
-    $message = 'Our ' . $rank . ' suggestion is "' . $recipe['name'] . '". All that you still need to cook this recipe is: ' . $recipe['toBuy'] . '. Please let us know how you liked the recipe in our facebook group :-)';
+    $message = 'Our ' . $rank . ' suggestion is ' . $recipe['name'] . '. All that you still need to cook this recipe is: ' . $recipe['toBuy'] . '. Please let us know how you liked the recipe in our facebook group :-)';
 
-    $message = 'Our ' . $rank . ' suggestion is ' . $recipe['name'] . '.';
     echo $message.'<br /><br />';
     $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
 
