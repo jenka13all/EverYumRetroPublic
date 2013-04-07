@@ -1,0 +1,1 @@
+{"tropo":[{"ask":{"choices":{"value":"Chinese, Mexican, Indian, Colombian, German, Italian, French"},"name":"foodstyle","say":[{"value":"Hi! Welcome to Ever yum! What kind of dish do you want to eat tonight?"}],"timeout":15}},{"on":{"event":"continue","next":"http://www.google.de?uri=continue"}}]}
