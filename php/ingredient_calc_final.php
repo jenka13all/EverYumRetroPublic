@@ -23,12 +23,10 @@ $arr_recipes = $app->service['yummly']->getRecipesByIngredients($arr_my_items, $
 
 // calculate best matches
 $bestMatches = $app->getBestMatches($arr_my_items, $arr_recipes);
-echo '<pre>' . print_r($bestMatches, true) . '</pre>';
 
-/*
 // iterate over the best matches and
 $i=0;
-foreach($recipes as $recipe) {
+foreach($bestMatches as $recipe) {
     switch($i){
         case 0:
             $rank = 'first';
@@ -45,15 +43,17 @@ foreach($recipes as $recipe) {
     }
 
     // get recipe
-    $detail = $app->service['yummly']->getRecipe($recipe->id);
+    $detail = $app->service['yummly']->getRecipe($recipe['id']);
 
     // save to Evernote
     $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $detail);
 
     // send text message
-    $message = "Our $rank suggestion is $recipe->name. All that you still need to cook this recipe is $recipe->missing_elements. Please let us know how you liked the recipe in our facebook group :-)";
+    $message = 'Our ' . $rank . ' suggestion is "' . $recipe['name'] . '". All that you still need to cook this recipe is: ' . $recipe['toBuy'] . '. Please let us know how you liked the recipe in our facebook group :-)';
+
+    echo $message.'<br /><br />';
     $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
 
+    break;
     $i++;
 }
-*/

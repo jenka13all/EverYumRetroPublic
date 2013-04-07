@@ -65,7 +65,7 @@ class Application {
                     $score++;
                 } elseif (stripos($tobuy, $item_compare) !== false) {
                     // echo "item deleted : $item_have<br>";
-                    $tobuy = str_ireplace($item_compare, "<font color=\"red\">*$item_compare*</font>", $tobuy);
+                    #$tobuy = str_ireplace($item_compare, "<font color=\"red\">*$item_compare*</font>", $tobuy);
                     $score++;
                 }
             }
