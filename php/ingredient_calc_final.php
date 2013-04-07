@@ -22,9 +22,9 @@ $arr_my_items = array_merge($grocery_list, $fridge_list);
 $arr_recipes = $app->service['yummly']->getRecipesByIngredients($arr_my_items, $course, $diet);
 
 // calculate best matches
-$arr_tobuy = return_shopping_list_obj($arr_my_items, $arr_recipes);
+$bestMatches = $app->getBestMatches($arr_my_items, $arr_recipes);
+echo '<pre>' . print_r($bestMatches, true) . '</pre>';
 
-echo '<pre>' . print_r($arr_tobuy, true) . '</pre>';
 /*
 // iterate over the best matches and
 $i=0;
