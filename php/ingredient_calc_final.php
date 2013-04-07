@@ -1,6 +1,4 @@
 <?php
-include_once("../libs/ingredient_calc_functions.php");
-
 $loader = require '../libs/autoload.php';
 
 $config = include __DIR__ . '/../config.php';

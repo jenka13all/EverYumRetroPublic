@@ -49,8 +49,6 @@ class Tropo extends Service {
             "Content-type:" => "application/json",
         ));
 
-        echo '<pre>' . print_r($result, true) . '</pre>';
-
     }
 
 }
