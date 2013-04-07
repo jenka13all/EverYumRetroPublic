@@ -4,10 +4,10 @@ $loader = require '../libs/autoload.php';
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
-$fridgeGuid = '1e9f19b0-733d-4f0a-ab73-214eb8a28a66';
-$recipeNotebookGuid = '0a848310-a119-4503-88c7-d0d9aa443f9b';
+// fetching user data (theoritcally by caller id)
+$user = include __DIR__ . '/../user.php';
 
-$ingredients = $app->service['evernote']->getFridgeContents($fridgeGuid);
+$ingredients = $app->service['evernote']->getFridgeContents($user['evernote.token'], $user['evernote.fridgeNoteGuid']);
 
 echo 'These are the contents of Daans fridge:' .
      '<ul><li>' . implode('</li><li>', $ingredients) . '</li></ul>';
@@ -33,6 +33,6 @@ $recipe = array(
     'name' => 'White Whole Wheat Pizza Dough',
 );
 echo '<b>Save a recipe to default recipe Notebook:</b>';
-$createdNote = $app->service['evernote']->createRecipeNote($recipeNotebookGuid, $recipe);
+$createdNote = $app->service['evernote']->createRecipeNote($user['evernote.token'], $user['evernote.recipeNotebookGuid'], $recipe);
 
 echo $createdNote->title;

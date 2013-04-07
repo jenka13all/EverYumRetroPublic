@@ -17,8 +17,7 @@ use Evernote\Client;
  */
 class Evernote extends Service {
 
-    protected $token;
-    protected $sandbox = false;
+    protected $sandbox;
 
     /**
      * Constructor
@@ -33,29 +32,28 @@ class Evernote extends Service {
      */
     public function __construct(array $config) {
 
-        $this->token   = $config['evernote.token'];
         $this->sandbox = $config['evernote.sandbox'];
 
     }
 
-    public function getClient() {
+    public function getClient($token) {
 
         $client = new Client(array(
             'sandbox' => $this->sandbox,
-            'token'   => $this->token,
+            'token'   => $token,
         ));
 
         return $client;
 
     }
 
-    public function getFridgeContents($guid) {
+    public function getFridgeContents($token, $guid) {
 
-        $client = $this->getClient();
+        $client = $this->getClient($token);
 
         // get the note Store 
         $noteStore = $client->getNoteStore();
-        $noteContent = $noteStore->getNoteContent($this->token, $guid);
+        $noteContent = $noteStore->getNoteContent($token, $guid);
 
         //converting format to string
         $noteContentString = (string) $noteContent;
@@ -80,9 +78,9 @@ class Evernote extends Service {
 
     }
 
-    public function createRecipeNote($notebookGuid, $recipe) {
+    public function createRecipeNote($token, $notebookGuid, $recipe) {
 
-        $client = $this->getClient();
+        $client = $this->getClient($token);
         $noteStore = $client->getNoteStore();
 
         // TO-DO: Add remote image to Note
@@ -130,7 +128,7 @@ class Evernote extends Service {
             (($hashImg)?'<en-media type="image/png" hash="' . $hashImg . '"/>':'') .
             '</en-note>';
 
-        $createdNote = $noteStore->createNote($this->token, $note);
+        $createdNote = $noteStore->createNote($token, $note);
 
         return $createdNote;
 

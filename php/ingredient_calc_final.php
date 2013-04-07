@@ -8,8 +8,11 @@ $loader = require '../libs/autoload.php';
 $config = include __DIR__ . '/../config.php';
 $app = new \EverYum\Application($config);
 
-//$ingredients set here
-include_once("getNoteFromEvernote.php");
+// fetching user data (theoritcally by caller id)
+$user = include __DIR__ . '/../user.php';
+
+// fetch fridge contents from Evernote
+$app->service['evernote']->getFridgeContents($user['evernote.token'], $user['evernote.fridgeNoteGuid']);
 
 //replace with Tropo values
 $course = array('course^course-Main Dishes');
