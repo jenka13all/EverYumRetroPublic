@@ -8,7 +8,7 @@ function app_start() {
     $tropo = new Tropo();
     $options = array("choices" => "Chinese, Mexican, Indian, Colombian, German, Italian, French", "name" => "foodstyle", "timeout" => 15);
     $tropo->ask("Hi! Welcome to Ever yum! What kind of dish do you want to eat tonight?", $options);
-    $tropo->on(array("event" => "continue", "next" => "http://www.google.de?uri=continue"));
+    $tropo->on(array("event" => "continue", "next" => "receiving_call.php?uri=continue"));
     $tropo->RenderJson();
 }
 dispatch_post('/continue', 'app_continue');
