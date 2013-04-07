@@ -48,7 +48,6 @@ class Tropo extends Service {
         $result = $this->request('GET', $url . '?' . http_build_query($parameters), '', array(
             "Content-type:" => "application/json",
         ));
-        echo '<pre>'.print_r($result, true) . '</pre>';
 
     }
 
