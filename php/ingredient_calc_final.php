@@ -54,5 +54,8 @@ foreach($bestMatches as $recipe) {
     echo $message.'<br /><br />';
     $app->service['tropo']->sendTextMessage($user['cellphone'], $message);
 
+    // Tropo limits us to 1 text message per second!
+    sleep(2);
+
     $i++;
 }
